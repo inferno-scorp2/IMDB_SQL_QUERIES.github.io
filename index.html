@@ -29,7 +29,7 @@ select * from information_Schema.columns where table_schema='imdb';             
  
 <b>3.Are there any Null Values in movies table ?</b>    
                                 
-<p> -- 0 for 'No' and 1 for 'Yes' as we have use aggregate function sum() 
+<p> -- 0 for 'No' and 1 for 'Yes' as we have used aggregate function sum().                              
  
 <br>&nbsp;</br>
  
@@ -86,13 +86,15 @@ select distinct(genre) from movies_genres
 union
 select distinct(genre) from directors_genres  ) as Genres ;
 <br>&nbsp;</br>                                                                                  
--- Count of Genres
+-- Count of Genres                         
+<br>&nbsp;</br>
 select count(distinct(genre)) as count_of_genres from( 
 select distinct(genre) from movies_genres
 union
 select distinct(genre) from directors_genres  ) as Genres ;</p>
                                                                              
-<br>&nbsp;</br>                                                                                       
+<br>&nbsp;</br>                                   
+                                       
 <b>9.Show the movies released by each director and store it in a temperory table.</b>
                                                                                                                     
 <p>create temporary table table1 (select md.director_id, md.movie_id , dr.director_name ,mv.movie_name from movies_directors as md inner join
