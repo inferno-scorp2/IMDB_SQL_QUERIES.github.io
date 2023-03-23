@@ -18,16 +18,20 @@ select * from information_Schema.columns where table_schema='imdb';             
 (select count(*) from movies) as movies_rows_count,
 (select count(*) from movies_directors) as movie_directors_rows_count,
 (select count(*) from roles) as roles_rows_count;</p>
+
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/1.png">
+
 <br>&nbsp;</br>
 
 <b>2.show the directors table.</b>
  
 <p>select * from directors;</p>
- 
-<br>&nbsp;</br>
 
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/2.png">
+
+<br>&nbsp;</br>
+<br>&nbsp;</br>
+
 
 <b>3.Are there any Null Values in movies table ?</b>    
                      
@@ -53,11 +57,13 @@ from movies;</p>
 <p>select name as movie, year from movies group by year order by year;</p>
 
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>5.Count the number of movies released each year.</b>
 
 <p>select year,count(name) from movies group by year order by year;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/5.png">                                                                                 
+<br>&nbsp;</br>
 <br>&nbsp;</br>
  
 <b>6.Show the top 10 years with most movies released.</b>
@@ -66,6 +72,7 @@ from movies;</p>
 
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/6.png">           
 
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 
 <b>7.What is the maximum, average, minimum rating(s) of all the movies</b>
@@ -78,12 +85,14 @@ select avg(rankscore) from movies;
 select max(rankscore) from movies;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/7.3.png">
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>8.Show top ranked movies.</b>
 
 <p>select movies.name, movies.rankscore from movies 
 inner join (select name, max(rankscore) as maxrank from movies) movies2 on movies.rankscore=movies2.maxrank;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/8.png">
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 
 <b>9.Count the number of genres listed in the dataset and show what are those.</b>                          
@@ -108,6 +117,7 @@ select distinct(genre) from directors_genres  ) as Genres ;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/9.2.png">   
                                                                              
 <br>&nbsp;</br> 
+<br>&nbsp;</br>
 
 <b>10.Show the movies released by each director and store it in a temperory table.</b>
                                                                                                                     
@@ -117,17 +127,20 @@ inner join (select id as movie_id, name as movie_name from movies) mv on md.movi
 select * from table1;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/10.png">
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>11.Show the top 20 directors who have directed most number of movies.</b>
 
 <p>select director_name , count(movie_name) as movies_count from table1 group by director_name order by movies_count desc limit 20 ;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/11.png">
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>12.Show the list of generes with most number of movies.</b>
 
 <p>select genre, count(movie_id) as movies_count from movies_genres group by genre order by movies_count desc;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/12.png">
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 
 <b>13.Show the directors who have directed diverse genra of movies, order by genre most to least.</b>
@@ -138,6 +151,7 @@ select  concat(directors.first_name,directors.last_name) as director_name, direc
 inner join directors_with_most_genres on directors.id=directors_with_most_genres.director_id;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/13.png">
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>14.Order movies from most to least number of roles played in the movies;</b>
 
@@ -146,11 +160,13 @@ inner join directors_with_most_genres on directors.id=directors_with_most_genres
 select  movies.name, rolescount.number_of_roles from movies inner join rolescount on movies.id=rolescount.movie_id order by number_of_roles desc;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/14.png">
 <br>&nbsp;</br>
+<br>&nbsp;</br>
  
 <b>15.Show the movies whose name start with 'An' and having rankscore>9.</b>
 
 <p>select * from movies where name like 'An%' having rankscore>9;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/15.png">
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 
 <b>16.Show the movies having name start with 'Fig' end with 'ub' , having charecter length 10 and released in 1999.</b>
@@ -160,13 +176,20 @@ select  movies.name, rolescount.number_of_roles from movies inner join rolescoun
 -- Note: Space(" ") is  also is a charecter.</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/16.png">
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>17.Show the movies from 1800 to 2000 having rankscore greater than 9.5;</b>
 
 <p>select * from movies having year between 1800 and 2000 and rankscore>9.5 order by year;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/17.png">
+
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 
 <b>18.Show the rankscores of the movies table having names ('Top Gun','Blade Runner','Border') and years they were released in.</b>
-<img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/18.png">
+<br>&nbsp;</br>
+
 <p>select lower(name),rankscore,year from movies where name in ('top gun','blade runner','border');</p>
+<img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/18.png">
+<br>&nbsp;</br>
+<br>&nbsp;</br>
