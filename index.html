@@ -22,13 +22,16 @@ select * from information_Schema.columns where table_schema='imdb';             
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/1.png">
 
 <br>&nbsp;</br>
-
+<br>&nbsp;</br
+<br>&nbsp;</br>
+                                                                                                                        
 <b>2.show the directors table.</b>
  
 <p>select * from directors;</p>
 
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/2.png">
 
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 <br>&nbsp;</br>
 
@@ -51,11 +54,17 @@ from movies;</p>
 
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/3.png">           
 <br>&nbsp;</br>
-
+<br>&nbsp;</br>
+<br>&nbsp;</br>
+                                                                      
 <b>4.Show the movies released in each year.</b>
-<img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/4.png">
-<p>select name as movie, year from movies group by year order by year;</p>
 
+<p>select name as movie, year from movies group by year order by year;</p>
+<br>&nbsp;</br>    
+
+<img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/4.png">
+
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 <br>&nbsp;</br>
 
@@ -63,6 +72,7 @@ from movies;</p>
 
 <p>select year,count(name) from movies group by year order by year;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/5.png">                                                                                 
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 <br>&nbsp;</br>
  
@@ -74,27 +84,34 @@ from movies;</p>
 
 <br>&nbsp;</br>
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>7.What is the maximum, average, minimum rating(s) of all the movies</b>
 
-
+<br>&nbsp;</br>
 <p>select min(rankscore) from movies;
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/7.1.png">
+<br>&nbsp;</br>
 select avg(rankscore) from movies;
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/7.2.png">
+<br>&nbsp;</br>
 select max(rankscore) from movies;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/7.3.png">
+                                                           
 <br>&nbsp;</br>
 <br>&nbsp;</br>
+<br>&nbsp;</br>                                                 
 
 <b>8.Show top ranked movies.</b>
 
 <p>select movies.name, movies.rankscore from movies 
 inner join (select name, max(rankscore) as maxrank from movies) movies2 on movies.rankscore=movies2.maxrank;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/8.png">
+                                                                                                
 <br>&nbsp;</br>
 <br>&nbsp;</br>
-
+<br>&nbsp;</br>
+                                                                       
 <b>9.Count the number of genres listed in the dataset and show what are those.</b>                          
 
 <br>&nbsp;</br>
@@ -118,6 +135,7 @@ select distinct(genre) from directors_genres  ) as Genres ;</p>
                                                                              
 <br>&nbsp;</br> 
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>10.Show the movies released by each director and store it in a temperory table.</b>
                                                                                                                     
@@ -128,6 +146,7 @@ select * from table1;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/10.png">
 <br>&nbsp;</br>
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>11.Show the top 20 directors who have directed most number of movies.</b>
 
@@ -135,11 +154,13 @@ select * from table1;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/11.png">
 <br>&nbsp;</br>
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>12.Show the list of generes with most number of movies.</b>
 
 <p>select genre, count(movie_id) as movies_count from movies_genres group by genre order by movies_count desc;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/12.png">
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 <br>&nbsp;</br>
 
@@ -152,6 +173,7 @@ inner join directors_with_most_genres on directors.id=directors_with_most_genres
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/13.png">
 <br>&nbsp;</br>
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>14.Order movies from most to least number of roles played in the movies;</b>
 
@@ -161,11 +183,13 @@ select  movies.name, rolescount.number_of_roles from movies inner join rolescoun
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/14.png">
 <br>&nbsp;</br>
 <br>&nbsp;</br>
+<br>&nbsp;</br>
  
 <b>15.Show the movies whose name start with 'An' and having rankscore>9.</b>
 
 <p>select * from movies where name like 'An%' having rankscore>9;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/15.png">
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 <br>&nbsp;</br>
 
@@ -177,6 +201,7 @@ select  movies.name, rolescount.number_of_roles from movies inner join rolescoun
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/16.png">
 <br>&nbsp;</br>
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>17.Show the movies from 1800 to 2000 having rankscore greater than 9.5;</b>
 
@@ -185,11 +210,13 @@ select  movies.name, rolescount.number_of_roles from movies inner join rolescoun
 
 <br>&nbsp;</br>
 <br>&nbsp;</br>
+<br>&nbsp;</br>
 
 <b>18.Show the rankscores of the movies table having names ('Top Gun','Blade Runner','Border') and years they were released in.</b>
 <br>&nbsp;</br>
 
 <p>select lower(name),rankscore,year from movies where name in ('top gun','blade runner','border');</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/18.png">
+<br>&nbsp;</br>
 <br>&nbsp;</br>
 <br>&nbsp;</br>
