@@ -6,7 +6,7 @@ show tables;
 
 <br>&nbsp;</br>
 
-select * from information_Schema.columns where table_schema='imdb'; -- this will give us an overview of whats in our dataset and tables.
+select * from information_Schema.columns where table_schema='imdb';              -- this will give us an overview of whats in our dataset and tables.
 
 <br>&nbsp;</br>
 
@@ -27,9 +27,11 @@ select * from information_Schema.columns where table_schema='imdb'; -- this will
  
 <br>&nbsp;</br>
  
-<b>3.Are there any Null Values in movies table ?</b>
-
-<p> -- 0 for 'No' and 1 for 'Yes' as we have use aggregate function sum()                            
+<b>3.Are there any Null Values in movies table ?</b>    
+                                
+<p> -- 0 for 'No' and 1 for 'Yes' as we have use aggregate function sum() 
+ 
+<br>&nbsp;</br>
  
 select sum(case  
 when id is Null then 1 else 0 end ) as id, 
@@ -74,23 +76,25 @@ inner join (select name, max(rankscore) as maxrank from movies) movies2 on movie
 
 <br>&nbsp;</br>
 
-<b>8.Count the number of genres listed in the dataset and show what are those.</b>
+<b>8.Count the number of genres listed in the dataset and show what are those.</b>                          
 
--- Genres
+<br>&nbsp;</br>
+
+-- Genres                                                                    
 <p>select distinct(genre) as count_of_genres from( 
 select distinct(genre) from movies_genres
 union
 select distinct(genre) from directors_genres  ) as Genres ;
-
+<br>&nbsp;</br>                                                                                  
 -- Count of Genres
 select count(distinct(genre)) as count_of_genres from( 
 select distinct(genre) from movies_genres
 union
 select distinct(genre) from directors_genres  ) as Genres ;</p>
-
-<br>&nbsp;</br>
+                                                                             
+<br>&nbsp;</br>                                                                                       
 <b>9.Show the movies released by each director and store it in a temperory table.</b>
-
+                                                                                                                    
 <p>create temporary table table1 (select md.director_id, md.movie_id , dr.director_name ,mv.movie_name from movies_directors as md inner join
 (select id as director_id,concat(first_name," ",last_name) as director_name from directors) dr on md.director_id=dr.director_id
 inner join (select id as movie_id, name as movie_name from movies) mv on md.movie_id = mv.movie_id);
@@ -136,7 +140,7 @@ select  movies.name, rolescount.number_of_roles from movies inner join rolescoun
 <b>16.Show the movies having name start with 'Fig' end with 'ub' , having charecter length 10 and released in 1999.</b>
 
 <p>select * from movies where name like 'Fig%ub'and length(name)=10 and year=1999; 
- 
+ <br>&nbsp;</br>
 -- Note: Space(" ") is  also is a charecter.</p>
 
 <br>&nbsp;</br>
