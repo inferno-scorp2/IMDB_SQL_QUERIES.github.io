@@ -1,4 +1,6 @@
- <h2>SOLVING QUERIES ON IMDB DATASET USING SQL</h2>
+<hr>
+<h2>SOLVING QUERIES ON IMDB DATASET USING SQL</h2>
+<hr>
  
 
 Use imdb;
@@ -6,18 +8,21 @@ show tables;
 
 <br>&nbsp;</br>
 
-select * from information_Schema.columns where table_schema='imdb';              -- this will give us an overview of whats in our dataset and tables.
+select * from information_Schema.columns where table_schema='imdb';                                                                                       
+-- this will give us an overview of whats in our dataset and tables.                                                
+
+<hr>
 
 <br>&nbsp;</br>
 
 <b>1.Count the number of rows present in each table.</b>
 
-<p>select
-(select count(*) from directors) as directors_rows_count,
-(select count(*) from directors_genres) as director_genres_rows_count,
-(select count(*) from movies) as movies_rows_count,
-(select count(*) from movies_directors) as movie_directors_rows_count,
-(select count(*) from roles) as roles_rows_count;</p>
+<p>select                                                                                                            
+(select count(*) from directors) as directors_rows_count,                                                                                        
+(select count(*) from directors_genres) as director_genres_rows_count,                                                                                        
+(select count(*) from movies) as movies_rows_count,                                                                                        
+(select count(*) from movies_directors) as movie_directors_rows_count,                                                                                        
+(select count(*) from roles) as roles_rows_count;</p>                                                                                        
 
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/1.png">
 
@@ -42,14 +47,14 @@ select * from information_Schema.columns where table_schema='imdb';             
  
 <br>&nbsp;</br>
  
-select sum(case  
-when id is Null then 1 else 0 end ) as id, 
+select sum(case                                                                                                                                          
+when id is Null then 1 else 0 end ) as id,                                                                
 (case 
-when name is Null then 1 else 0 end ) as name,
+when name is Null then 1 else 0 end ) as name,                                                                          
 (case 
-when year is Null then 1 else 0 end ) as year,
+when year is Null then 1 else 0 end ) as year,                                                   
 (case 
-when rankscore is Null then 1 else 0 end ) as rankscore
+when rankscore is Null then 1 else 0 end ) as rankscore                                                                    
 from movies;</p>
 
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/3.png">           
@@ -144,10 +149,11 @@ select distinct(genre) from directors_genres  ) as Genres ;</p>
 
 <b>10.Show the movies released by each director and store it in a temperory table.</b>
                                                                                                                     
-<p>create temporary table table1 (select md.director_id, md.movie_id , dr.director_name ,mv.movie_name from movies_directors as md inner join
-(select id as director_id,concat(first_name," ",last_name) as director_name from directors) dr on md.director_id=dr.director_id
-inner join (select id as movie_id, name as movie_name from movies) mv on md.movie_id = mv.movie_id);
-select * from table1;</p>
+<p>create temporary table table1 (select md.director_id, md.movie_id , dr.director_name ,mv.movie_name from movies_directors as md inner join                                        
+(select id as director_id,concat(first_name," ",last_name) as director_name from directors) dr                                                     
+ on md.director_id=dr.director_id                                                                                 
+inner join (select id as movie_id, name as movie_name from movies) mv on md.movie_id = mv.movie_id);                                             
+select * from table1;</p>                                                                       
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/10.png">
 <br>&nbsp;</br>
 <br>&nbsp;</br>
@@ -172,7 +178,7 @@ select * from table1;</p>
 <b>13.Show the directors who have directed diverse genra of movies, order by genre most to least.</b>
 
 <p>with directors_with_most_genres as(
-select director_id, count(genre) as genre_count from directors_genres group by director_id order by genre_count desc) 
+select director_id, count(genre) as genre_count from directors_genres group by director_id order by genre_count desc)                                                  
 select  concat(directors.first_name,directors.last_name) as director_name, directors.id as directors_id, directors_with_most_genres.genre_count  from directors 
 inner join directors_with_most_genres on directors.id=directors_with_most_genres.director_id;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/13.png">
@@ -183,8 +189,9 @@ inner join directors_with_most_genres on directors.id=directors_with_most_genres
 <b>14.Order movies from most to least number of roles played in the movies;</b>
 
 <p>with rolescount as 
-(select movie_id,count(role) as number_of_roles from roles group by movie_id )
-select  movies.name, rolescount.number_of_roles from movies inner join rolescount on movies.id=rolescount.movie_id order by number_of_roles desc;</p>
+(select movie_id,count(role) as number_of_roles from roles group by movie_id )                                                                                           
+select  movies.name, rolescount.number_of_roles from movies inner join rolescount                                                                                                                           
+ on movies.id=rolescount.movie_id order by number_of_roles desc;</p>
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/14.png">
 <br>&nbsp;</br>
 <br>&nbsp;</br>
@@ -200,9 +207,9 @@ select  movies.name, rolescount.number_of_roles from movies inner join rolescoun
 
 <b>16.Show the movies having name start with 'Fig' end with 'ub' , having charecter length 10 and released in 1999.</b>
 
-<p>select * from movies where name like 'Fig%ub'and length(name)=10 and year=1999; 
+<p>select * from movies where name like 'Fig%ub'and length(name)=10 and year=1999;                                   
  <br>&nbsp;</br>
--- Note: Space(" ") is  also is a charecter.</p>
+-- Note: Space(" ") is  also is a charecter.</p>                                          
 <img src="https://raw.githubusercontent.com/inferno-scorp2/IMDB_SQL_QUERIES.github.io/main/sql/16.png">
 <br>&nbsp;</br>
 <br>&nbsp;</br>
